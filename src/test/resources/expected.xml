@@ -1,0 +1,4 @@
+<dataset>
+    <users id="1" password="123" person_id="1" name="John" surname="Smith"/>
+    <users id="2" password="123456" person_id="2" name="John" surname="Doe"/>
+</dataset>
