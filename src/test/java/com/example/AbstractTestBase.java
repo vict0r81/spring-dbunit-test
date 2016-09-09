@@ -20,7 +20,7 @@ import static org.springframework.test.context.TestExecutionListeners.MergeMode.
 @Import(SpringH2Config.class)
 @TestExecutionListeners(listeners = {DbUnitTestExecutionListener.class}, mergeMode = MERGE_WITH_DEFAULTS)
 @EnableAutoConfiguration
-@DbUnitConfiguration(databaseConnection = "dataSource")
+@DbUnitConfiguration
 @DatabaseTearDown(value = "/cleanup.xml", type = DatabaseOperation.DELETE_ALL)
 public class AbstractTestBase extends AbstractJUnit4SpringContextTests {
 

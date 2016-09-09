@@ -1,5 +1,8 @@
 package com.example.config;
 
+import com.github.springtestdbunit.bean.DatabaseConfigBean;
+import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
+import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -33,6 +36,22 @@ public class SpringH2Config {
         emf.setPersistenceUnitName("enromo");
 
         return emf;
+    }
+
+    @Bean
+    public DatabaseConfigBean dbUnitDatabaseConfig() {
+        final DatabaseConfigBean bean = new DatabaseConfigBean();
+        bean.setDatatypeFactory(new H2DataTypeFactory());
+        bean.setEscapePattern("`");
+        return bean;
+    }
+
+    @Bean
+    public DatabaseDataSourceConnectionFactoryBean dbUnitDatabaseConnection(DataSource dataSource) {
+        final DatabaseDataSourceConnectionFactoryBean bean = new DatabaseDataSourceConnectionFactoryBean(dataSource);
+        bean.setDatabaseConfig(dbUnitDatabaseConfig());
+        bean.setSchema("PUBLIC");
+        return bean;
     }
 
     Properties additionalProperties() {
